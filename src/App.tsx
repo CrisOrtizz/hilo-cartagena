@@ -1,22 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import Products from './components/Products';
-import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
+
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import CartPage from './pages/CartPage';
+import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   return (
     <CartProvider>
-    <div>
-      <Navigation />
-      <Hero />
-      <Products />
-      <About />
-      <Contact />
-      <Footer />
-    </div>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Routes>
+        <Footer />
+      </Router>
     </CartProvider>
   );
 }
