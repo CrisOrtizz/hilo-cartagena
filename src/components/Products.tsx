@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useCart } from '../context/CartContext'; 
 
 interface Product {
   id: number;
@@ -12,6 +13,7 @@ export default function Products() {
   // State: productos y loading state
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const { addToCart } = useCart();
 
   // useEffect: cargar productos cuando el componente monta
   useEffect(() => {
@@ -116,9 +118,18 @@ export default function Products() {
                   <span className="text-2xl font-bold text-coral-500">
                     {product.price}
                   </span>
-                  <button className="bg-emerald-900 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg transition duration-300">
+                  <button 
+                    onClick={() => addToCart({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                        image: product.image
+                    })}
+                    className="bg-emerald-900 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg transition duration-300"
+                    >
                     Add to Cart
-                  </button>
+                    </button>
                 </div>
               </div>
             </div>

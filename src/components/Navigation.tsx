@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useCart } from '../context/CartContext';
 
 export default function Navigation() {
   // State: track if mobile menu is open
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const { cart } = useCart();
+  const cartCount = cart.reduce((total: number, item: any) => total + item.quantity, 0);
 
   // Toggle menu function
   const toggleMenu = () => {
@@ -24,7 +27,17 @@ export default function Navigation() {
           <li><a href="#products" className="hover:text-coral-400">Products</a></li>
           <li><a href="#about" className="hover:text-coral-400">About</a></li>
           <li><a href="#contact" className="hover:text-coral-400">Contact</a></li>
-        </ul>
+          <li className="relative">
+            <a href="#cart" className="hover:text-coral-400 flex items-center gap-2">
+                🛒 Cart
+                {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-coral-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    {cartCount}
+                </span>
+            )}
+        </a>
+    </li>
+</ul>
 
         {/* Hamburger Button (mobile) */}
         <button 

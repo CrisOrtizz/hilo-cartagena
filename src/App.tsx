@@ -4,9 +4,11 @@ import Products from './components/Products';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { CartProvider } from './context/CartContext';
 
 export default function App() {
   return (
+    <CartProvider>
     <div>
       <Navigation />
       <Hero />
@@ -15,5 +17,6 @@ export default function App() {
       <Contact />
       <Footer />
     </div>
+    </CartProvider>
   );
 }
