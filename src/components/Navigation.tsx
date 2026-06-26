@@ -28,7 +28,7 @@ export default function Navigation() {
             <Link to="/shop">Shop</Link>
           </motion.li>
           <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
-            <a href="#about">About</a>
+            <Link to="/about">About</Link>
           </motion.li>
           <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
             <a href="#contact">Contact</a>
@@ -58,8 +58,8 @@ export default function Navigation() {
           <ul className="flex flex-col gap-4 text-sm font-light uppercase tracking-widest">
             <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
             <li><Link to="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link></li>
-            <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-            <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
             <li><Link to="/cart" onClick={() => setIsMenuOpen(false)}>Cart ({cartCount})</Link></li>
           </ul>
         </motion.div>
