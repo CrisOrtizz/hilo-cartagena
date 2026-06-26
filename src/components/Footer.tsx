@@ -1,103 +1,72 @@
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        
-        {/* Footer Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
-          {/* Column 1: Brand */}
-          <div>
-            <h3 className="text-2xl font-bold text-coral-500 mb-4">
-              Hilo Cartagena
+    <footer className="bg-dark text-cream">
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-3xl font-bold mb-4">
+              Hilo<span className="text-coral">.</span>
             </h3>
-            <p className="text-gray-400">
-              Authentic Caribbean fashion crafted with passion in Cartagena, Colombia.
+            <p className="text-cream text-opacity-60">
+              Authentic Caribbean fashion from Cartagena, Colombia.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-400 hover:text-coral-500">Home</a></li>
-              <li><a href="#products" className="text-gray-400 hover:text-coral-500">Shop</a></li>
-              <li><a href="#about" className="text-gray-400 hover:text-coral-500">About</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-coral-500">Contact</a></li>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest">Shop</h4>
+            <ul className="space-y-3 text-cream text-opacity-70 text-sm">
+              <li><Link to="/shop" className="hover:text-coral transition">New Arrivals</Link></li>
+              <li><a href="#" className="hover:text-coral transition">Best Sellers</a></li>
+              <li><a href="#" className="hover:text-coral transition">Collections</a></li>
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Column 3: Customer Service */}
-          <div>
-            <h4 className="text-lg font-bold mb-4">Support</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-coral-500">FAQ</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-coral-500">Shipping Info</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-coral-500">Returns</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-coral-500">Privacy Policy</a></li>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest">Support</h4>
+            <ul className="space-y-3 text-cream text-opacity-70 text-sm">
+              <li><a href="#" className="hover:text-coral transition">Shipping Info</a></li>
+              <li><a href="#" className="hover:text-coral transition">Returns</a></li>
+              <li><a href="#" className="hover:text-coral transition">FAQ</a></li>
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Column 4: Social Media */}
-          <div>
-            <h4 className="text-lg font-bold mb-4">Follow Us</h4>
-            <div className="flex gap-4">
-              <a 
-                href="https://instagram.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-coral-500 transition duration-300"
-              >
-                📷
-              </a>
-              <a 
-                href="https://facebook.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-coral-500 transition duration-300"
-              >
-                👥
-              </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-coral-500 transition duration-300"
-              >
-                🐦
-              </a>
-              <a 
-                href="https://tiktok.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-coral-500 transition duration-300"
-              >
-                🎵
-              </a>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
+            <ul className="space-y-3 text-cream text-opacity-70 text-sm">
+              <li><a href="#" className="hover:text-coral transition">Instagram</a></li>
+              <li><a href="#" className="hover:text-coral transition">TikTok</a></li>
+              <li><a href="#" className="hover:text-coral transition">Email</a></li>
+            </ul>
+          </motion.div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-700 pt-8">
-          {/* Bottom Footer */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <p className="text-gray-400">
-              © 2026 Hilo Cartagena. All rights reserved.
-            </p>
-            <div className="flex justify-start md:justify-end gap-6">
-              <a href="#" className="text-gray-400 hover:text-coral-500 text-sm">
-                Terms & Conditions
-              </a>
-              <a href="#" className="text-gray-400 hover:text-coral-500 text-sm">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-coral-500 text-sm">
-                Contact
-              </a>
-            </div>
-          </div>
-        </div>
+        <motion.div
+          className="border-t border-cream border-opacity-20 pt-10 text-center text-cream text-opacity-50 text-sm"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <p>© 2026 Hilo Cartagena. Handcrafted with 🖤 in Colombia.</p>
+        </motion.div>
       </div>
     </footer>
   );
