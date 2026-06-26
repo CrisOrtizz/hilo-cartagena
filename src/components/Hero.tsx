@@ -1,27 +1,69 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 export default function Hero() {
-    return (
-    <section className="bg-gradient-to-br from-emerald-900 via-teal-800 to-blue-900 text-white min-h-screen flex items-center justify-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+  const words = ['Authentic', 'Caribbean', 'Fashion'];
 
-         {/* Main Heading*/}
-         <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Aunthentic Caribbean Fashion 
-         </h1>
+  return (
+    <section className="bg-dark text-cream min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        
+        {/* Animated Heading */}
+        <motion.h1 className="text-7xl md:text-8xl font-bold mb-8 leading-tight">
+          {words.map((word, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.8 }}
+              className="inline-block"
+            >
+              {word}{' '}
+            </motion.div>
+          ))}
+        </motion.h1>
 
-         {/* Subheading */}
-         <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200">
-            Discover unique pieces that celebrate Caribbean heritage. Each garment tells a story of tradition, craftsmanship, and cultural pride.
-         </p>   
-         {/* CTA Buttons */}
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <button className="bg-coral-500 hover:bg-coral-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                 Shop Now  
-                </button>
-                <button className="border-2 border-coral-500 text-coral-500 hover:bg-coral-500 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300">
-                 Learn More  
-                </button>
-            </div>
-         </div>
-    </section>    
-    );
+        {/* Subtitle */}
+        <motion.p 
+          className="text-lg text-cream text-opacity-70 mb-12 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          Handcrafted clothing from Cartagena, Colombia.<br />
+          Each piece tells a story of tradition and culture.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div 
+          className="flex flex-col md:flex-row gap-6 justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <Link 
+            to="/shop"
+            className="px-8 py-4 bg-coral text-dark font-bold text-lg hover:shadow-lg transition duration-300"
+          >
+            Shop Now
+          </Link>
+          <a 
+            href="#products"
+            className="px-8 py-4 border-2 border-cream hover:bg-cream hover:text-dark transition duration-300 font-bold text-lg"
+          >
+            Browse
+          </a>
+        </motion.div>
+
+        {/* Animated Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <p className="text-cream text-opacity-50 text-sm">Scroll to explore</p>
+        </motion.div>
+      </div>
+    </section>
+  );
 }

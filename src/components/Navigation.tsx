@@ -1,59 +1,69 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { motion } from 'framer-motion';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { cart } = useCart();
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   const cartCount = cart.reduce((total: number, item: any) => total + item.quantity, 0);
 
   return (
-    <nav className="bg-emerald-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
-        <Link to="/" className="text-2xl font-bold text-coral-400">
-          Hilo Cartagena
+    <motion.nav 
+      className="fixed top-0 left-0 right-0 z-50 bg-dark text-cream"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold tracking-tight">
+          Hilo<span className="text-coral">.</span>
         </Link>
 
-        <ul className="hidden md:flex gap-8">
-          <li><Link to="/" className="hover:text-coral-400">Home</Link></li>
-          <li><Link to="/shop" className="hover:text-coral-400">Shop</Link></li>
-          <li><a href="#about" className="hover:text-coral-400">About</a></li>
-          <li><a href="#contact" className="hover:text-coral-400">Contact</a></li>
-          <li className="relative">
-            <Link to="/cart" className="hover:text-coral-400 flex items-center gap-2">
-              🛒 Cart
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-coral-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-          </li>
+        <ul className="hidden md:flex gap-12 items-center text-sm font-light uppercase tracking-widest">
+          <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
+            <Link to="/">Home</Link>
+          </motion.li>
+          <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
+            <Link to="/shop">Shop</Link>
+          </motion.li>
+          <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
+            <a href="#about">About</a>
+          </motion.li>
+          <motion.li whileHover={{ color: '#D85A30' }} transition={{ duration: 0.2 }}>
+            <a href="#contact">Contact</a>
+          </motion.li>
         </ul>
 
+        <motion.div whileHover={{ scale: 1.05 }} className="relative">
+          <Link to="/cart" className="text-sm font-light">
+            Cart {cartCount > 0 && `(${cartCount})`}
+          </Link>
+        </motion.div>
+
         <button 
-          onClick={toggleMenu}
-          className="md:hidden text-2xl bg-none border-none text-white cursor-pointer"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-2xl"
         >
           ☰
         </button>
       </div>
 
       {isMenuOpen && (
-        <ul className="md:hidden bg-emerald-800 px-6 py-4 flex flex-col gap-4">
-          <li><Link to="/" className="hover:text-coral-400">Home</Link></li>
-          <li><Link to="/shop" className="hover:text-coral-400">Shop</Link></li>
-          <li><a href="#about" className="hover:text-coral-400">About</a></li>
-          <li><a href="#contact" className="hover:text-coral-400">Contact</a></li>
-          <li><Link to="/cart" className="hover:text-coral-400">🛒 Cart ({cartCount})</Link></li>
-        </ul>
+        <motion.div 
+          className="md:hidden bg-dark border-t border-cream border-opacity-10 px-6 py-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <ul className="flex flex-col gap-4 text-sm font-light uppercase tracking-widest">
+            <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link></li>
+            <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+            <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+            <li><Link to="/cart" onClick={() => setIsMenuOpen(false)}>Cart ({cartCount})</Link></li>
+          </ul>
+        </motion.div>
       )}
-    </nav>
+    </motion.nav>
   );
 }

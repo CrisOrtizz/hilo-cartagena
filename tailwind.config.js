@@ -6,13 +6,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        coral: {
-          500: '#ff6b6b',
-          600: '#ff5252',
-        }
+        dark: '#0A0E27',
+        cream: '#FAF8F3',
+        coral: '#D85A30',
+        teal: '#0F6E56',
       }
     },
   },
-  
   plugins: [],
 }
