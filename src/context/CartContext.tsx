@@ -1,61 +1,69 @@
 import { createContext, useState, useContext, type ReactNode } from 'react';
 
-// Define el tipo de un producto en el carrito
 interface CartItem {
   id: number;
   name: string;
-  price: string;
+  price: number; // número: necesario para sumar totales
   quantity: number;
   image: string;
 }
 
-// Define el contexto
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: CartItem) => void;
   removeFromCart: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
 }
 
-// Crear el contexto
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Crear el provider
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = (product: CartItem) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find(item => item.id === product.id);
-      
+      const existingItem = prevCart.find((item) => item.id === product.id);
+      const qtyToAdd = product.quantity || 1;
+
       if (existingItem) {
-        return prevCart.map(item =>
+        return prevCart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + qtyToAdd }
             : item
         );
-      } else {
-        return [...prevCart, { ...product, quantity: 1 }];
       }
+      return [...prevCart, { ...product, quantity: qtyToAdd }];
     });
   };
 
   const removeFromCart = (productId: number) => {
-    setCart((prevCart) => prevCart.filter(item => item.id !== productId));
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
-  const clearCart = () => {
-    setCart([]);
+  // Cambia la cantidad de un item. Si llega a 0 o menos, lo quitamos.
+  const updateQuantity = (productId: number, quantity: number) => {
+    setCart((prevCart) => {
+      if (quantity <= 0) {
+        return prevCart.filter((item) => item.id !== productId);
+      }
+      return prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity } : item
+      );
+    });
   };
+
+  const clearCart = () => setCart([]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
 }
 
-// Hook para usar el contexto
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {

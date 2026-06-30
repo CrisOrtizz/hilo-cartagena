@@ -10,7 +10,13 @@ export interface Product {
 }
 
 // Guardamos el precio como número; esta función lo formatea para mostrar.
-export const formatPrice = (price: number) => `$${price}`;
+const copFormatter = new Intl.NumberFormat('es-CO', {
+  style: 'currency',
+  currency: 'COP',
+  maximumFractionDigits: 0, // COP no usa centavos
+});
+
+export const formatPrice = (price: number) => copFormatter.format(price);
 
 export const products: Product[] = [
   { id: 1, name: 'Guayabera de Lino', price: 65, image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=750&fit=crop', description: 'Tejida a mano en Cartagena', category: 'hombre', sizes: ['S', 'M', 'L', 'XL'], bestSeller: true },

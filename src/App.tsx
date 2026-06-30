@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 import ContactPage from './pages/ContactPage';
+import Checkout from './pages/Checkout';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
         <Footer />

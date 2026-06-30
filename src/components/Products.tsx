@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-import { motion } from 'framer-motion';
-import { products as allProducts, formatPrice, type Product } from '../data/products';
+import { products as allProducts, formatPrice, type Product } from '../data/catalog';
+import { motion, type Variants } from 'framer-motion';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 };
-const cardVariants = {
+
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
@@ -73,7 +74,7 @@ export default function Products() {
                 <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-dark/90 p-5">
                   <button
                     onClick={() =>
-                      addToCart({ id: product.id, name: product.name, price: formatPrice(product.price), image: product.image, quantity: 1 })
+                      addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 })
                     }
                     className="w-full py-3 bg-coral text-dark font-bold text-sm uppercase tracking-widest hover:bg-cream transition-colors duration-300"
                   >

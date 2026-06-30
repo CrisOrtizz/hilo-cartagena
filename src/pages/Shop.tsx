@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
-import { products, formatPrice } from '../data/products';
+import { products, formatPrice } from '../data/catalog';
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 
@@ -129,7 +129,7 @@ export default function Shop() {
                           addToCart({
                             id: product.id,
                             name: product.name,
-                            price: formatPrice(product.price),
+                            price: product.price,
                             image: product.image,
                             quantity: 1,
                           })
