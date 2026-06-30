@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
@@ -15,16 +16,15 @@ import ContactPage from './pages/ContactPage';
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <CartProvider>
       <Router>
-        {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-        
+        <AnimatePresence>
+          {showSplash && (
+            <SplashScreen key="splash" onComplete={() => setShowSplash(false)} />
+          )}
+        </AnimatePresence>
+
         <Navigation />
         <main className="pt-20">
           <Routes>
