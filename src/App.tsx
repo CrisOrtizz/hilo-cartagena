@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 import ContactPage from './pages/ContactPage';
 import Checkout from './pages/Checkout';
+import ProductDetail from './pages/ProductDetail';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </main>
         <Footer />
