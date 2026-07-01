@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const { cart } = useCart();
+  const { cart, openCart } = useCart();
   const cartCount = cart.reduce((total: number, item: any) => total + item.quantity, 0);
 
   return (
@@ -35,11 +35,9 @@ export default function Navigation() {
           </motion.li>
         </ul>
 
-        <motion.div whileHover={{ scale: 1.05 }} className="relative">
-          <Link to="/cart" className="text-sm font-light">
-            Cart {cartCount > 0 && `(${cartCount})`}
-          </Link>
-        </motion.div>
+        <motion.button whileHover={{ scale: 1.05 }} onClick={openCart} className="relative text-sm font-light">
+          Cart {cartCount > 0 && `(${cartCount})`}
+</motion.button>
 
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}

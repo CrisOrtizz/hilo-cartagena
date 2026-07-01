@@ -14,6 +14,7 @@ import About from './pages/About';
 import ContactPage from './pages/ContactPage';
 import Checkout from './pages/Checkout';
 import ProductDetail from './pages/ProductDetail';
+import CartDrawer from './components/CartDrawer';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -28,6 +29,8 @@ export default function App() {
         </AnimatePresence>
 
         <Navigation />
+        <CartDrawer />
+        <main className="pt-20"></main>
         <main className="pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
